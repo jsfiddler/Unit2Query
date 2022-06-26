@@ -1,0 +1,35 @@
+<!DocType html>
+<html>
+  <body onload=()>
+    <form onsubmit="generateQuery()">
+	<fieldset>
+	 <legend>Einheiten:</legend>
+      <input type="radio" id="pressure" name="units" value="bar" checked>
+	  <label for="bar">Druck (bar)</label><br>
+	  <input type="radio" id="length" name="units" value="mm">
+	  <label for="bar">Länge (mm)</label><br>
+	  <input type="radio" id="temperature" name="units" value="celsius">
+	  <label for="bar">Temperatur (Celsius)</label><br>
+	 </fieldset>
+	  <br>
+	  <label for="lowerLimit">Anfangswert</label>
+	  <input type="text" id="lowerLIM" name="lowerLimit" value="1">
+	  <label for="upperLimit">Endwert</label>
+	  <input type="text" id="upperLIM" name="upperLimit" value="400">
+	  <br><br>
+	  <label for="proximity">Proximity</label>
+	  <input type="text" id="prox" name="proximity" value="3w">
+	  <br><br>
+	  <input type="submit" id="submitButton" value="Abfrage generieren">
+    </form>
+    <p><u>generierte Abfrage für</u></p><p id="AbfrageErgebnis">Druck: 1-100 bar</p>
+    <textarea id="copyUnit_Area" rows="4" cols="80">( 1:400 3w bar?), (100:40000 3w kpa), (0.1:4 3w mpa) ) </textarea>
+	
+	<script>
+		function generateQuery(){
+		document.getElementById('copyUnit_Area').textContent=location.search.slice(1).split('&').toString()
+	}
+	</script>
+  </body>
+  <!--Instead of form onsubmit, which send the parameters to the url, use another way to get the text for the textarea. Also need some logic to see which unit was pressed-->
+</html>
